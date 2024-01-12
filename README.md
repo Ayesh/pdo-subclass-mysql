@@ -4,7 +4,7 @@
 
 Provides user-land PHP polyfills for the MySQL subclass provided by PHP 8.4.
 
-Requires PHP 8,1, 8.2 or PHP 8.3 with `mbstring` extension. Not supported on PHP 8.4 because these functions are natively implemented in PHP 8.4.
+Supports PHP 8.1, 8.2, and 8.3
 
 ## Installation
 
@@ -14,6 +14,25 @@ composer require polyfills/pdo-mysql-subclass
 
 ## Usage
 
+Use the provided `PdoMysql` class to replace `PDO` MySQL connections.
+
+```php
+$mysqlConnection = new PdoMysql(
+    'mysql:host=localhost;dbname=phpwatch;charset=utf8mb4;port=33066',
+    '<username>',
+    '<password>',
+);
+```
+
+```php
+$mysqlConnection = PdoMysql::connect(
+    'mysql:host=localhost;dbname=phpwatch;charset=utf8mb4;port=33066',
+    '<username>',
+    '<password>',
+);
+```
+
+This polyfill adds class-constants to `PdoMysql` class to match all of the `PDO::MYSQL_` constants. For example, `PDO::MYSQL_ATTR_SSL_CERT` is identical to `PdoMysql::ATTR_SSL_CERT`.
 
 ## Contributions
 
