@@ -68,6 +68,6 @@ class PdoMysql extends PDO {
         #[\SensitiveParameter] ?string $password = null,
         ?array $options = null
     ): static {
-        return new static($dsn, $username, $password, $options, $options);
+        return new static($dsn, $username, $password, $options);
     }
 }
