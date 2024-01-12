@@ -1,6 +1,6 @@
 # PDO MySQL Subclass Polyfill
 
-[![Latest Stable Version](http://poser.pugx.org/polyfills/polyfills/pdo-mysql-subclass/v)](https://packagist.org/packages/polyfills/pdo-mysql-subclass) [![License](http://poser.pugx.org/polyfills/pdo-mysql-subclass/license)](https://packagist.org/packages/polyfills/pdo-mysql-subclass) [![PHP Version Require](http://poser.pugx.org/polyfills/pdo-mysql-subclass/require/php)](https://packagist.org/packages/polyfills/pdo-mysql-subclass)
+[![Latest Stable Version](https://poser.pugx.org/polyfills/pdo-mysql-subclass/v)](https://packagist.org/packages/polyfills/pdo-mysql-subclass) [![License](https://poser.pugx.org/polyfills/pdo-mysql-subclass/license)](https://packagist.org/packages/polyfills/pdo-mysql-subclass) [![PHP Version Require](https://poser.pugx.org/polyfills/pdo-mysql-subclass/require/php)](https://packagist.org/packages/polyfills/pdo-mysql-subclass) ![CI](https://github.com/PHP-Polyfills/PDO-MySQL-Subclass/actions/workflows/ci.yml/badge.svg)
 
 Provides user-land PHP polyfills for the MySQL subclass provided by PHP 8.4.
 
