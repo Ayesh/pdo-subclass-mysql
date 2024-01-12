@@ -15,14 +15,14 @@ class PdoMysqlTest extends TestCase {
 
         foreach ($constants as $constant => $value) {
             if (str_starts_with($constant, 'MYSQL_')) {
-                yield $constant => [$constant];
+                $mysqlConstant = preg_replace('/^MYSQL_/', '', $constant);
+                yield $mysqlConstant => [$constant, $mysqlConstant];
             }
         }
     }
 
     #[DataProvider('pdoClassConstantKeysDataProvider')]
-    public function testPdoConstantsSameAsPdoMysql(string $constant): void {
-        $mysqlConstant = preg_replace('/^MYSQL_/', '', $constant);
+    public function testPdoConstantsSameAsPdoMysql(string $constant, string $mysqlConstant): void {
         $this->assertTrue(defined(PdoMysql::class . '::' . $mysqlConstant), 'Check if PdoMysql::' . $mysqlConstant . ' exists');
         $this->assertSame(constant('PDO::' . $constant), constant(PdoMysql::class . '::' . $mysqlConstant), 'Check if value and type PDO::' . $constant . ' === ' . PdoMysql::class . '::' . $mysqlConstant);
     }
