@@ -1,6 +1,6 @@
 <?php
 
-
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class PdoMysqlTest extends TestCase {
@@ -9,16 +9,21 @@ class PdoMysqlTest extends TestCase {
         $this->assertContains(PDO::class, class_parents(PdoMysql::class));
     }
 
-    public function testContainsPdoKeys() {
+    public static function pdoClassConstantKeysDataProvider(): Generator {
         $reflector = new ReflectionClass(PDO::class);
         $constants = $reflector->getConstants(ReflectionClassConstant::IS_PUBLIC);
 
         foreach ($constants as $constant => $value) {
             if (str_starts_with($constant, 'MYSQL_')) {
-                $classConst = preg_replace('/^MYSQL_/', '', $constant);
-                $this->assertTrue(defined(PdoMysql::class . '::' . $constant));
-                $this->assertSame(constant('PDO::' . $constant), constant(PdoMysql::class . '::' . $constant));
+                yield $constant => [$constant];
             }
         }
+    }
+
+    #[DataProvider('pdoClassConstantKeysDataProvider')]
+    public function testPdoConstantsSameAsPdoMysql(string $constant): void {
+        $mysqlConstant = preg_replace('/^MYSQL_/', '', $constant);
+        $this->assertTrue(defined(PdoMysql::class . '::' . $mysqlConstant), 'Check if PdoMysql::' . $mysqlConstant . ' exists');
+        $this->assertSame(constant('PDO::' . $constant), constant(PdoMysql::class . '::' . $mysqlConstant), 'Check if value and type PDO::' . $constant . ' === ' . PdoMysql::class . '::' . $mysqlConstant);
     }
 }
