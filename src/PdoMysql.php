@@ -53,13 +53,13 @@ class PdoMysql extends PDO {
         }
 
         if (!in_array($matches[1], PDO::getAvailableDrivers(), true)) {
-            throw new PDOException('Count not find driver');
+            throw new PDOException('could not find driver');
         }
 
         if ($matches[1] !== 'mysql') {
             throw new PDOException(sprintf('PdoMysql::connect() cannot be called when connecting to the "%s" driver, either %s::connect() or PDO::connect() must be called instead',
                 $matches[1],
-                ucwords($matches[1]),
+                'Pdo' . ucfirst($matches[1]),
             ));
         }
 
