@@ -26,4 +26,20 @@ class PdoMysqlTest extends TestCase {
         $this->assertTrue(defined(PdoMysql::class . '::' . $mysqlConstant), 'Check if PdoMysql::' . $mysqlConstant . ' exists');
         $this->assertSame(constant('PDO::' . $constant), constant(PdoMysql::class . '::' . $mysqlConstant), 'Check if value and type PDO::' . $constant . ' === ' . PdoMysql::class . '::' . $mysqlConstant);
     }
+
+    public function testThrowsOnDifferentDsns(): void {
+        $this->expectException(PDOException::class);
+        $this->expectExceptionMessage('could not find driver');
+        PdoMysql::connect('foobar:test');
+    }
+
+    public function testThrowsOnUnknownDsns(): void {
+        if (!in_array('sqlite', PDO::getAvailableDrivers(), true)) {
+            $this->markTestSkipped('Sqlite driver not available');
+        }
+
+        $this->expectException(PDOException::class);
+        $this->expectExceptionMessage('PdoMysql::connect() cannot be called when connecting to the "sqlite" driver, either PdoSqlite::connect() or PDO::connect() must be called instead');
+        PdoMysql::connect('sqlite:test');
+    }
 }
