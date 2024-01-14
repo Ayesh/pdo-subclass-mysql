@@ -38,7 +38,7 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: sudo systemctl start mysql.service
 
-      - name: Run tests with phpunit - Uit tests
+      - name: Run tests with phpunit - Unit tests
         run: vendor/bin/phpunit --testsuite default
 
       - name: Run tests with phpunit - Integration tests

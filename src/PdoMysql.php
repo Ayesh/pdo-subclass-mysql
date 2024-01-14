@@ -57,7 +57,7 @@ class PdoMysql extends PDO {
         }
 
         if ($matches[1] !== 'mysql') {
-            throw new PDOException(sprintf('PdoMysql::connect() cannot be called when connecting to the "%s" driver, either %s::connect() or PDO::connect() must be called instead.',
+            throw new PDOException(sprintf('PdoMysql::connect() cannot be called when connecting to the "%s" driver, either %s::connect() or PDO::connect() must be called instead',
                 $matches[1],
                 ucwords($matches[1]),
             ));
