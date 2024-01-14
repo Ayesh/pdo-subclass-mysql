@@ -22,7 +22,7 @@
             <exclude>tests/PdoMysqlIntegrationTest.php</exclude>
         </testsuite>
         <testsuite name="full">
-            <directory>tests</directory>
+            <file>tests/PdoMysqlIntegrationTest.php</file>
         </testsuite>
     </testsuites>
     <coverage>

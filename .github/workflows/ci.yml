@@ -35,10 +35,15 @@ jobs:
         run: composer update --no-ansi --no-interaction --no-progress
 
       - name: Start MySQL
+        if: matrix.os != 'windows-latest'
         run: sudo systemctl start mysql.service
 
-      - name: Run tests with phpunit
-        run: vendor/bin/phpunit
+      - name: Run tests with phpunit - Uit tests
+        run: vendor/bin/phpunit --testsuite default
+
+      - name: Run tests with phpunit - Integration tests
+        run: vendor/bin/phpunit --testsuite full
+        if: matrix.os != 'windows-latest'
         env:
           DB_DSN: 'mysql:host=127.0.0.1;charset=utf8mb4'
           DB_USER: 'root'
