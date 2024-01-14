@@ -4,7 +4,9 @@
 
 Provides user-land PHP polyfills for the MySQL subclass provided by PHP 8.4.
 
-Supports PHP 8.1, 8.2, and 8.3
+Supports PHP 8.1, 8.2, and 8.3. On PHP 8.4 and later, this polyfill is not necessary. Requires `pdo_mysql` extension compiled with `mysqlnd` (which is the default and common approach).
+
+For more information, see [`PdoMysql`](https://php.watch/versions/8.4/pdo-driver-subclasses#PdoMysql) on [`PHP 8.4: PDO Driver-specific sub-classes: MySQL`](https://php.watch/versions/8.4/pdo-driver-subclasses)
 
 ## Installation
 
@@ -33,6 +35,11 @@ $mysqlConnection = PdoMysql::connect(
 ```
 
 This polyfill adds class-constants to `PdoMysql` class to match all of the `PDO::MYSQL_` constants. For example, `PDO::MYSQL_ATTR_SSL_CERT` is identical to `PdoMysql::ATTR_SSL_CERT`.
+
+### Features not implemented
+
+ - `PDO::connect`: This method cannot be polyfilled because it's an existing PHP class that user-land PHP classes cannot modify.
+ - `PdoMysql::getWarningCount`: This method is not implemented in the polfyill.
 
 ## Contributions
 
