@@ -6,6 +6,8 @@ Provides user-land PHP polyfills for the MySQL subclass provided by PHP 8.4.
 
 Supports PHP 8.1, 8.2, and 8.3. On PHP 8.4 and later, this polyfill is not necessary. Requires `pdo_mysql` extension compiled with `mysqlnd` (which is the default and common approach).
 
+It is possible and safe to require this polyfill on PHP 8.4 and later. This polyfill class is autoloadable; on PHP 8.4 and later, PHP will _not_ autoload this polyfill because it's declared natively.
+
 For more information, see [`PdoMysql`](https://php.watch/versions/8.4/pdo-driver-subclasses#PdoMysql) on [`PHP 8.4: PDO Driver-specific sub-classes: MySQL`](https://php.watch/versions/8.4/pdo-driver-subclasses)
 
 ## Installation
